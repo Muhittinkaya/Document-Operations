@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Upload</title>
+</head>
+<body>
+
+<h1 align="center">Form</h1>
+<form th:action="upload" method="post" enctype="multipart/form-data">
+    <p align="center">Id: <input type="text" th:name="id" /></p>
+    <p align="center">Message: <input type="file" th:name="document" /></p>
+    <p align="center"><input type="submit" th:value="upload" /></p>
+</form>
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>link</th>
+    </tr>
+    <tr th:each="document:${documents}">
+        <td th:text="${document.id}"></td>
+        <td th:text="${document.name}"></td>
+        <td><a th:href="@{'/download?id=' + ${document.id}}">Download</a></td>
+    </tr>
+</table>
+
+</body>
+</html>
